@@ -1,0 +1,21 @@
+---
+- name: creating the docker container
+  hosts: all
+  become: yes
+  tasks:
+    - name: Pull the docker image
+      docker_image:
+        name: mysql:latest
+        source: pull
+         
+    - name: create the docker container
+      docker_container:
+        name: sql
+        image: mysql:latest
+        published_ports:
+          - "1234:3306"
+        state: started
+             
+
+
+

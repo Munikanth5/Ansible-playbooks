@@ -1,0 +1,15 @@
+---
+- name: Copy the files
+  hosts: all
+  become: yes
+  tasks:
+    - name: copy the files from source to destination
+      copy:
+        dest: /home/ubuntu
+        src: /etc/ansible/files/{{ item }}
+        remote_src: yes
+      with_items:
+      - user.txt
+      - name.txt
+      - test.txt
+

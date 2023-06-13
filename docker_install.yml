@@ -1,0 +1,8 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: docker install
+      apt:
+        name: docker.io
+        state: latest

@@ -1,0 +1,10 @@
+---
+- name: Coping the files
+  hosts: all
+  become: yes
+  tasks:
+    - name: copy the files from source to destination
+      copy:
+        src: /etc/ansible/pratice.txt
+        dest: /home/ubuntu
+      
