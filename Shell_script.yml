@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: copy the script
+      copy:
+        src: system_mointor.sh
+        dest: /home/ubuntu/system_mointor.sh
+        mode: "0777"
+        remote_src: no
+
+    - name: execute the script
+      script: /bin/bash /home/ubuntu/system_mointor.sh >> mointor.txt
+
+    - name: remove the file
+      shell: rm system_mointor.sh
+
+    - name: fectch the file
+      fetch:
+        src: /home/ubuntu/mointor.txt
+        dest: /home/ubuntu/mointor.txt

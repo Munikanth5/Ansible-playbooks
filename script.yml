@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Copy the script
+      copy:
+        src: systeminfo.sh
+        dest: /home/ubuntu/systeminfo.sh
+        mode: "0777"
+        remote_src: no
+
+    - name: Execute the script
+      script: /bin/bash /home/ubuntu/systeminfo.sh
+      register: system
+
+    - debug:
+        var: system.stdout
